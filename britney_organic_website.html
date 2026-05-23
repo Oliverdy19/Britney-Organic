@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Britney Organic | Cuida tu piel, ama tu esencia</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Playfair Display for headers & Montserrat for body -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        serif: ['"Playfair Display"', 'serif'],
+                        sans: ['"Montserrat"', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            light: '#FFF5F5',     // Soft pastel pink background
+                            bg: '#FAF3F0',        // Elegant Warm Nude/Beige
+                            accent: '#F3D8C7',    // Slightly deeper beige
+                            rose: '#E8A598',      // Main delicate rose brand color
+                            roseDark: '#C28C7A',  // Deep accent rose for text
+                            charcoal: '#4A3525',  // Dark elegant brown-charcoal for high-contrast text
+                        }
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.6s ease-out forwards',
+                        'slide-up': 'slideUp 0.8s ease-out forwards',
+                        'pulse-subtle': 'pulseSubtle 2s infinite ease-in-out',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(20px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' },
+                        },
+                        pulseSubtle: {
+                            '0%, 100%': { transform: 'scale(1)' },
+                            '50%': { transform: 'scale(1.05)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom delicate scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #FFF5F5;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #E8A598;
+            border-radius: 10px;
+        }
+        /* Custom glassmorphism and fine lines */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(232, 165, 152, 0.2);
+        }
+    </style>
+</head>
+<body class="bg-brand-light text-brand-charcoal font-sans antialiased selection:bg-brand-rose selection:text-white overflow-x-hidden">
+
+    <!-- TOP ANNOUNCEMENT BAR -->
+    <div class="bg-brand-roseDark text-white text-center py-2 px-4 text-xs tracking-wider uppercase font-medium">
+        ✨ Envíos a todo el país • Compra rápida y segura vía WhatsApp 🌸
+    </div>
+
+    <!-- MAIN HEADER & NAVIGATION -->
+    <header class="sticky top-0 z-40 transition-all duration-300 glass-card">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#home" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-full bg-brand-rose flex items-center justify-center text-white font-serif font-bold text-xl shadow-sm transition-transform duration-300 group-hover:scale-105">
+                    B
+                </div>
+                <div>
+                    <h1 class="font-serif text-xl sm:text-2xl tracking-widest font-semibold text-brand-charcoal">BRITNEY</h1>
+                    <p class="text-[9px] tracking-[0.3em] uppercase -mt-1 text-brand-roseDark font-medium">Organic</p>
+                </div>
+            </a>
+
+            <!-- Navigation Links -->
+            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium tracking-wide">
+                <a href="#home" class="text-brand-charcoal hover:text-brand-rose transition-colors">Inicio</a>
+                <a href="#productos" class="text-brand-charcoal hover:text-brand-rose transition-colors">Catálogo</a>
+                <a href="#valores" class="text-brand-charcoal hover:text-brand-rose transition-colors">Sobre Nosotros</a>
+                <a href="#contacto" class="text-brand-charcoal hover:text-brand-rose transition-colors">Contacto</a>
+            </nav>
+
+            <!-- Actions (Cart) -->
+            <div class="flex items-center gap-4">
+                <button onclick="toggleCart()" class="relative p-2.5 rounded-full hover:bg-brand-accent/30 transition-all duration-200" aria-label="Ver Carrito">
+                    <i data-lucide="shopping-bag" class="w-6 h-6 text-brand-charcoal"></i>
+                    <span id="cart-badge" class="absolute -top-1 -right-1 bg-brand-rose text-white font-bold text-xs w-5 h-5 rounded-full flex items-center justify-center scale-0 transition-transform duration-300">0</span>
+                </button>
+                <a href="https://wa.me/18293256597" target="_blank" class="hidden sm:flex items-center gap-2 bg-brand-rose hover:bg-brand-roseDark text-white px-5 py-2.5 rounded-full text-sm font-medium tracking-wide shadow-sm transition-all duration-300 hover:shadow-md">
+                    <i data-lucide="phone" class="w-4 h-4"></i>
+                    (829) 325-6597
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION (HOME) -->
+    <section id="home" class="relative overflow-hidden pt-12 pb-20 md:py-32 flex items-center bg-gradient-to-b from-[#FFF5F5] to-brand-bg">
+        <!-- Floating Floral SVGs for aesthetic touch -->
+        <div class="absolute -left-12 top-1/4 opacity-10 pointer-events-none">
+            <svg class="w-48 h-48 fill-brand-roseDark" viewBox="0 0 100 100">
+                <path d="M50,0 C60,30 90,40 90,50 C90,60 60,70 50,100 C40,70 10,60 10,50 C10,40 40,30 50,0" />
+            </svg>
+        </div>
+        <div class="absolute -right-24 bottom-10 opacity-15 pointer-events-none">
+            <svg class="w-64 h-64 fill-brand-rose" viewBox="0 0 100 100">
+                <path d="M30,20 C45,15 55,25 60,40 C65,55 55,70 40,75 C25,80 15,65 10,50 C5,35 15,25 30,20" />
+            </svg>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Hero Text Info -->
+                <div class="lg:col-span-7 space-y-8 text-center lg:text-left animate-slide-up">
+                    <div class="inline-flex items-center gap-2 bg-brand-accent/40 border border-brand-rose/20 px-4 py-1.5 rounded-full text-brand-roseDark text-xs uppercase tracking-widest font-semibold">
+                        <span class="w-2 h-2 rounded-full bg-brand-rose animate-ping"></span>
+                        100% Natural & Hecho a Mano
+                    </div>
+                    <h2 class="font-serif text-4xl sm:text-5xl md:text-6xl text-brand-charcoal font-medium leading-[1.15]">
+                        Cuida tu piel, <br>
+                        <span class="italic text-brand-roseDark font-normal">ama tu esencia</span>.
+                    </h2>
+                    <p class="text-base sm:text-lg text-brand-charcoal/80 max-w-xl mx-auto lg:mx-0 font-light leading-relaxed">
+                        Belleza natural, ingredientes puros y resultados reales para tu rutina de skincare diaria. Una línea de cuidado personal artesanal formulada con amor para consentirte.
+                    </p>
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
+                        <a href="#productos" class="w-full sm:w-auto text-center bg-brand-rose hover:bg-brand-roseDark text-white px-8 py-4 rounded-full font-medium tracking-wide shadow-md hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-300">
+                            Explorar Catálogo
+                        </a>
+                        <a href="#contacto" class="w-full sm:w-auto text-center bg-white/80 hover:bg-white text-brand-charcoal border border-brand-rose/30 px-8 py-4 rounded-full font-medium tracking-wide transition-all duration-300">
+                            Hacer Pedido Directo
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Hero Image Showcase with frame -->
+                <div class="lg:col-span-5 flex justify-center items-center relative animate-fade-in">
+                    <!-- Elegant Background Frame -->
+                    <div class="absolute -inset-2 rounded-[2.5rem] border border-dashed border-brand-rose/40 -rotate-3 scale-95 pointer-events-none"></div>
+                    <div class="absolute inset-4 bg-brand-accent rounded-[2.5rem] rotate-2 scale-95 opacity-50 -z-10"></div>
+                    
+                    <div class="relative w-full max-w-sm aspect-[4/5] rounded-[2rem] overflow-hidden shadow-2xl bg-white border-4 border-white transition-transform duration-500 hover:scale-[1.02]">
+                        <img 
+                            src="https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=600&q=80" 
+                            alt="Cuidado Natural de Britney Organic" 
+                            class="w-full h-full object-cover"
+                        >
+                        <div class="absolute inset-0 bg-gradient-to-t from-brand-charcoal/40 via-transparent to-transparent"></div>
+                        <div class="absolute bottom-6 left-6 right-6 text-white text-center">
+                            <span class="font-serif text-lg tracking-wide italic">"Belleza pura y artesanal"</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- BRAND VALUES BADGES -->
+    <section id="valores" class="py-12 bg-white border-y border-brand-rose/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <!-- Value 1 -->
+                <div class="flex flex-col items-center text-center space-y-3 p-4 group">
+                    <div class="w-14 h-14 rounded-full bg-brand-light flex items-center justify-center text-brand-roseDark group-hover:scale-110 transition-transform duration-300 shadow-sm">
+                        <i data-lucide="leaf" class="w-6 h-6"></i>
+                    </div>
+                    <span class="text-xs uppercase tracking-widest font-semibold text-brand-roseDark">100% Natural</span>
+                    <p class="text-xs text-brand-charcoal/60 font-light max-w-[150px]">Ingredientes extraídos de la naturaleza</p>
+                </div>
+                <!-- Value 2 -->
+                <div class="flex flex-col items-center text-center space-y-3 p-4 group">
+                    <div class="w-14 h-14 rounded-full bg-brand-light flex items-center justify-center text-brand-roseDark group-hover:scale-110 transition-transform duration-300 shadow-sm">
+                        <i data-lucide="sparkles" class="w-6 h-6"></i>
+                    </div>
+                    <span class="text-xs uppercase tracking-widest font-semibold text-brand-roseDark">Hecho a mano</span>
+                    <p class="text-xs text-brand-charcoal/60 font-light max-w-[150px]">Lotes pequeños para máxima frescura</p>
+                </div>
+                <!-- Value 3 -->
+                <div class="flex flex-col items-center text-center space-y-3 p-4 group">
+                    <div class="w-14 h-14 rounded-full bg-brand-light flex items-center justify-center text-brand-roseDark group-hover:scale-110 transition-transform duration-300 shadow-sm">
+                        <i data-lucide="shield-check" class="w-6 h-6"></i>
+                    </div>
+                    <span class="text-xs uppercase tracking-widest font-semibold text-brand-roseDark">Sin Químicos</span>
+                    <p class="text-xs text-brand-charcoal/60 font-light max-w-[150px]">Libre de parabenos, sulfatos y tóxicos</p>
+                </div>
+                <!-- Value 4 -->
+                <div class="flex flex-col items-center text-center space-y-3 p-4 group">
+                    <div class="w-14 h-14 rounded-full bg-brand-light flex items-center justify-center text-brand-roseDark group-hover:scale-110 transition-transform duration-300 shadow-sm">
+                        <i data-lucide="heart" class="w-6 h-6"></i>
+                    </div>
+                    <span class="text-xs uppercase tracking-widest font-semibold text-brand-roseDark">Hecho con amor</span>
+                    <p class="text-xs text-brand-charcoal/60 font-light max-w-[150px]">Dedicación en cada detalle para ti</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRODUCT CATALOG SECTION -->
+    <section id="productos" class="py-20 md:py-28 bg-brand-bg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- Title Header -->
+            <div class="text-center space-y-4 mb-16">
+                <p class="text-xs tracking-[0.3em] uppercase text-brand-roseDark font-semibold">Nuestra Colección</p>
+                <h3 class="font-serif text-3xl sm:text-4xl md:text-5xl text-brand-charcoal font-semibold">PRECIOS Y PRODUCTOS</h3>
+                <div class="w-24 h-0.5 bg-brand-rose mx-auto rounded-full"></div>
+                <p class="text-sm sm:text-base text-brand-charcoal/70 max-w-xl mx-auto font-light">
+                    Selecciona tus consentidos para armar tu rutina y haz tu orden directamente por WhatsApp.
+                </p>
+            </div>
+
+            <!-- Categories Tabs -->
+            <div class="flex flex-wrap justify-center gap-3 mb-12">
+                <button onclick="filterProducts('todos')" class="cat-btn px-6 py-2.5 rounded-full text-xs sm:text-sm font-medium tracking-wide transition-all duration-300 bg-brand-rose text-white shadow-sm" data-category="todos">
+                    Ver Todos
+                </button>
+                <button onclick="filterProducts('jabones')" class="cat-btn px-6 py-2.5 rounded-full text-xs sm:text-sm font-medium tracking-wide transition-all duration-300 bg-white hover:bg-brand-rose/10 text-brand-charcoal border border-brand-rose/20" data-category="jabones">
+                    Jabones Artesanales
+                </button>
+                <button onclick="filterProducts('exfoliantes')" class="cat-btn px-6 py-2.5 rounded-full text-xs sm:text-sm font-medium tracking-wide transition-all duration-300 bg-white hover:bg-brand-rose/10 text-brand-charcoal border border-brand-rose/20" data-category="exfoliantes">
+                    Exfoliantes Corporales
+                </button>
+                <button onclick="filterProducts('cuidado')" class="cat-btn px-6 py-2.5 rounded-full text-xs sm:text-sm font-medium tracking-wide transition-all duration-300 bg-white hover:bg-brand-rose/10 text-brand-charcoal border border-brand-rose/20" data-category="cuidado">
+                    Cuidado Natural / Facial
+                </button>
+            </div>
+
+            <!-- Search input -->
+            <div class="max-w-md mx-auto mb-12 relative">
+                <input 
+                    type="text" 
+                    id="product-search" 
+                    placeholder="Buscar producto (ej: avena, coco)..." 
+                    oninput="searchProducts()"
+                    class="w-full px-5 py-3.5 pl-12 rounded-full border border-brand-rose/30 bg-white/80 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-rose/50 text-sm tracking-wide transition-all placeholder:text-brand-charcoal/40"
+                >
+                <i data-lucide="search" class="w-5 h-5 text-brand-roseDark absolute left-4 top-1/2 -translate-y-1/2"></i>
+            </div>
+
+            <!-- Products Grid -->
+            <div id="products-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                <!-- Products will be dynamically generated by JS -->
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SPECIAL INSTAGRAM MOCK SECTION (Aesthetic) -->
+    <section class="py-16 bg-white overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center space-y-3 mb-10">
+                <p class="text-xs tracking-[0.2em] uppercase text-brand-roseDark font-semibold">@BritneyUnicaribe</p>
+                <h4 class="font-serif text-2xl sm:text-3xl text-brand-charcoal">Síguenos en nuestras redes</h4>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="relative group aspect-square rounded-2xl overflow-hidden shadow-sm bg-brand-light">
+                    <img src="https://images.unsplash.com/photo-1607006342445-36443c0809a4?auto=format&fit=crop&w=400&q=80" alt="Jabones Britney" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-brand-roseDark/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-all duration-300">
+                        <i data-lucide="instagram" class="w-8 h-8 text-white"></i>
+                    </div>
+                </div>
+                <div class="relative group aspect-square rounded-2xl overflow-hidden shadow-sm bg-brand-light">
+                    <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=400&q=80" alt="Crema facial" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-brand-roseDark/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-all duration-300">
+                        <i data-lucide="instagram" class="w-8 h-8 text-white"></i>
+                    </div>
+                </div>
+                <div class="relative group aspect-square rounded-2xl overflow-hidden shadow-sm bg-brand-light">
+                    <img src="https://images.unsplash.com/photo-1601049676099-e7ed07d825b0?auto=format&fit=crop&w=400&q=80" alt="Exfoliante" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-brand-roseDark/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-all duration-300">
+                        <i data-lucide="instagram" class="w-8 h-8 text-white"></i>
+                    </div>
+                </div>
+                <div class="relative group aspect-square rounded-2xl overflow-hidden shadow-sm bg-brand-light">
+                    <img src="https://images.unsplash.com/photo-1556229174-5e42a09e45af?auto=format&fit=crop&w=400&q=80" alt="Rutina natural" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-brand-roseDark/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-all duration-300">
+                        <i data-lucide="instagram" class="w-8 h-8 text-white"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER & ORDER FORM -->
+    <footer id="contacto" class="bg-brand-bg text-brand-charcoal pt-20 pb-8 border-t border-brand-rose/20 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-12 pb-16">
+            
+            <!-- Left Info -->
+            <div class="lg:col-span-4 space-y-6">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-brand-rose flex items-center justify-center text-white font-serif font-bold text-xl shadow-sm">
+                        B
+                    </div>
+                    <div>
+                        <h1 class="font-serif text-2xl tracking-widest font-semibold text-brand-charcoal">BRITNEY</h1>
+                        <p class="text-[9px] tracking-[0.3em] uppercase -mt-1 text-brand-roseDark font-medium">Organic</p>
+                    </div>
+                </div>
+                <p class="text-sm text-brand-charcoal/70 font-light leading-relaxed">
+                    Creemos en la belleza consciente, el cuidado natural y el poder de los ingredientes orgánicos para nutrir tu piel y consentir tus sentidos todos los días.
+                </p>
+                <div class="space-y-3 pt-2 text-sm text-brand-charcoal/80">
+                    <div class="flex items-center gap-3">
+                        <i data-lucide="map-pin" class="w-4 h-4 text-brand-rose"></i>
+                        <span>República Dominicana</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <i data-lucide="phone" class="w-4 h-4 text-brand-rose"></i>
+                        <a href="tel:+18293256597" class="hover:underline">(829) 325-6597</a>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <i data-lucide="mail" class="w-4 h-4 text-brand-rose"></i>
+                        <span>hola@britneyorganic.com</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Middle quick links -->
+            <div class="lg:col-span-3 space-y-6">
+                <h5 class="text-sm uppercase tracking-widest font-bold text-brand-roseDark">Enlaces Rápidos</h5>
+                <ul class="space-y-3 text-sm font-light text-brand-charcoal/80">
+                    <li><a href="#home" class="hover:text-brand-rose transition-colors">Inicio</a></li>
+                    <li><a href="#productos" class="hover:text-brand-rose transition-colors">Productos</a></li>
+                    <li><a href="#valores" class="hover:text-brand-rose transition-colors">Sobre Nosotros</a></li>
+                    <li><a href="https://wa.me/18293256597" target="_blank" class="hover:text-brand-rose transition-colors">Pedidos directos</a></li>
+                </ul>
+            </div>
+
+            <!-- Order / Consultation Form -->
+            <div class="lg:col-span-5 space-y-6 bg-white/70 p-6 sm:p-8 rounded-3xl border border-brand-rose/20 shadow-sm">
+                <h5 class="text-lg font-serif font-semibold text-brand-charcoal">¿Tienes dudas o deseas atención personalizada?</h5>
+                <p class="text-xs text-brand-charcoal/70 font-light">Escríbenos directamente y te daremos asesoría gratuita sobre qué producto va mejor con tu tipo de piel.</p>
+                
+                <form id="contact-form" onsubmit="sendFormWhatsApp(event)" class="space-y-4">
+                    <div>
+                        <label for="form-name" class="block text-xs uppercase tracking-wider font-semibold text-brand-roseDark mb-1.5">Tu Nombre</label>
+                        <input type="text" id="form-name" placeholder="Ej: Maria Perez" required class="w-full px-4 py-2.5 rounded-xl border border-brand-rose/30 bg-white focus:outline-none focus:ring-2 focus:ring-brand-rose/50 text-sm">
+                    </div>
+                    <div>
+                        <label for="form-message" class="block text-xs uppercase tracking-wider font-semibold text-brand-roseDark mb-1.5">Mensaje o Pregunta</label>
+                        <textarea id="form-message" rows="3" placeholder="Hola Britney, me interesa saber cuál jabón recomiendan para piel seca..." required class="w-full px-4 py-2.5 rounded-xl border border-brand-rose/30 bg-white focus:outline-none focus:ring-2 focus:ring-brand-rose/50 text-sm"></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-brand-rose hover:bg-brand-roseDark text-white py-3 rounded-xl text-sm font-semibold tracking-wide shadow transition-all duration-300 flex items-center justify-center gap-2">
+                        <i data-lucide="send" class="w-4 h-4"></i>
+                        Enviar consulta a WhatsApp
+                    </button>
+                </form>
+            </div>
+
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 border-t border-brand-rose/10 text-center text-xs text-brand-charcoal/50">
+            <p>&copy; 2026 Britney Organic. Todos los derechos reservados. Belleza natural • Ingredientes puros • Hecho con amor ♥</p>
+        </div>
+    </footer>
+
+    <!-- CART SIDE DRAWER -->
+    <!-- FIX: Removimos los bloqueadores de clics para que la pantalla funcione correctamente -->
+    <div id="cart-drawer" class="fixed inset-0 z-50 pointer-events-none opacity-0 transition-all duration-300">
+        <!-- Backdrop overlay -->
+        <div onclick="toggleCart('close')" class="absolute inset-0 bg-black/30 backdrop-blur-sm transition-opacity duration-300"></div>
+        
+        <!-- Drawer content -->
+        <div id="cart-drawer-content" class="absolute right-0 top-0 bottom-0 w-full max-w-md bg-brand-light shadow-2xl flex flex-col transform translate-x-full transition-transform duration-300 ease-out pointer-events-none">
+            
+            <!-- Cart Header -->
+            <div class="p-6 border-b border-brand-rose/20 flex items-center justify-between bg-white">
+                <div class="flex items-center gap-2">
+                    <i data-lucide="shopping-bag" class="w-5 h-5 text-brand-roseDark"></i>
+                    <h3 class="font-serif text-xl font-semibold">Tus Consentidos</h3>
+                </div>
+                <button onclick="toggleCart('close')" class="p-2 hover:bg-brand-light rounded-full transition-colors">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+
+            <!-- Cart Items container -->
+            <div id="cart-items" class="flex-1 overflow-y-auto p-6 space-y-4">
+                <!-- Cart items dynamically rendered -->
+                <div id="empty-cart-message" class="text-center py-12 space-y-4">
+                    <div class="w-16 h-16 rounded-full bg-brand-accent/30 flex items-center justify-center mx-auto text-brand-roseDark">
+                        <i data-lucide="heart" class="w-8 h-8"></i>
+                    </div>
+                    <p class="text-brand-charcoal/60 font-light text-sm">Aún no tienes productos en tu carrito.</p>
+                    <button onclick="toggleCart('close')" class="text-xs bg-brand-rose text-white px-5 py-2.5 rounded-full font-medium uppercase tracking-wider">Volver al catálogo</button>
+                </div>
+            </div>
+
+            <!-- Cart Footer Summary -->
+            <div class="p-6 border-t border-brand-rose/20 bg-white space-y-4">
+                <div class="flex justify-between text-sm text-brand-charcoal">
+                    <span>Subtotal</span>
+                    <span id="cart-subtotal" class="font-medium">RD$ 0.00</span>
+                </div>
+                <div class="flex justify-between text-xs text-brand-charcoal/60">
+                    <span>Envío</span>
+                    <span class="italic">Se calcula por WhatsApp</span>
+                </div>
+                <div class="h-px bg-brand-rose/10 my-2"></div>
+                <div class="flex justify-between text-base font-bold text-brand-charcoal">
+                    <span>Total estimado</span>
+                    <span id="cart-total" class="text-brand-roseDark">RD$ 0.00</span>
+                </div>
+                
+                <button onclick="checkoutOrder()" class="w-full bg-brand-rose hover:bg-brand-roseDark text-white py-4 rounded-xl font-medium tracking-wide shadow-md transition-all duration-300 flex items-center justify-center gap-2">
+                    <i data-lucide="shopping-cart" class="w-4 h-4"></i>
+                    Completar Pedido por WhatsApp
+                </button>
+                <p class="text-[10px] text-center text-brand-charcoal/50">Tu pedido se enviará en formato de lista para confirmarlo de inmediato con nosotras.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- WHATSAPP FLOATING BADGE -->
+    <a href="https://wa.me/18293256597?text=Hola%21+Me+gustaría+saber+más+sobre+los+productos+de+Britney+Organic." target="_blank" class="fixed bottom-6 right-6 z-40 bg-[#25D366] hover:bg-[#20ba5a] text-white p-4 rounded-full shadow-xl hover:shadow-2xl hover:scale-110 active:scale-95 transition-all duration-300 flex items-center justify-center animate-pulse-subtle" aria-label="Contacto WhatsApp Directo">
+        <svg class="w-7 h-7 fill-white" viewBox="0 0 24 24">
+            <path d="M12.004 2c-5.51 0-9.99 4.49-9.99 10 0 1.8.48 3.54 1.39 5.07l-1.4 5.1 5.23-1.37c1.47.8 3.12 1.22 4.77 1.22 5.51 0 9.99-4.49 9.99-10s-4.48-10-9.99-10zm5.83 14.25c-.24.67-1.42 1.28-1.95 1.35-.48.06-.94.13-3.05-.72-2.7-1.09-4.41-3.84-4.54-4.02-.13-.18-1.08-1.43-1.08-2.73 0-1.3.68-1.94.92-2.2.24-.26.54-.33.72-.33.18 0 .36 0 .51.01.16.01.37-.06.58.45.21.52.73 1.79.8 1.93.07.15.11.33.01.52-.09.19-.15.31-.3.48-.15.17-.31.38-.45.51-.15.15-.31.31-.13.62.18.3.79 1.3 1.7 2.11.78.7 1.43.92 1.74 1.05.31.13.49.11.67-.09.18-.21.78-.91.98-1.22.2-.31.4-.26.68-.16.27.1.1.27.73 1.79 1.15.57 1.15.09.15.22.15.07.15.42.09.67l-.24.66z"/>
+        </svg>
+    </a>
+
+    <!-- CUSTOM TOAST NOTIFICATION FOR ADDED TO CART -->
+    <div id="toast" class="fixed bottom-6 left-6 z-50 bg-brand-charcoal text-white px-6 py-4 rounded-2xl shadow-2xl flex items-center gap-3 transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none">
+        <div class="w-7 h-7 rounded-full bg-brand-rose flex items-center justify-center">
+            <i data-lucide="check" class="w-4 h-4 text-white"></i>
+        </div>
+        <div>
+            <p id="toast-title" class="text-xs font-semibold uppercase tracking-wider text-brand-rose">¡Agregado con éxito!</p>
+            <p id="toast-message" class="text-xs font-light text-brand-light">Tu producto se ha añadido a la bolsa.</p>
+        </div>
+    </div>
+
+    <!-- MAIN JAVASCRIPT LOGIC -->
+    <script>
+        // List of products accurately extracted from image_42386e.jpg
+        const rawProducts = [
+            // JABONES ARTESANALES
+            {
+                id: 'jab-carbon',
+                name: 'Jabón de Carbón Activado',
+                category: 'jabones',
+                price: 250,
+                description: 'Limpieza profunda, detoxificante y control de grasa.',
+                image: 'https://images.unsplash.com/photo-1607006342445-36443c0809a4?auto=format&fit=crop&w=500&q=80',
+                emoji: '🧼🖤'
+            },
+            {
+                id: 'jab-avena',
+                name: 'Jabón de Avena Natural',
+                category: 'jabones',
+                price: 250,
+                description: 'Exfoliación ultra suave ideal para pieles sensibles.',
+                image: 'https://images.unsplash.com/photo-1546554137-f86b9593a222?auto=format&fit=crop&w=500&q=80',
+                emoji: '🧼🌾'
+            },
+            {
+                id: 'jab-rosa-mosqueta',
+                name: 'Jabón de Rosa Mosqueta',
+                category: 'jabones',
+                price: 250,
+                description: 'Regenerador celular, hidratación intensa y elasticidad.',
+                image: 'https://images.unsplash.com/photo-1608248597481-496100c80836?auto=format&fit=crop&w=500&q=80',
+                emoji: '🧼🌹'
+            },
+            {
+                id: 'jab-curcuma',
+                name: 'Jabón de Cúrcuma Orgánica',
+                category: 'jabones',
+                price: 250,
+                description: 'Antiséptico natural, aclarante y brinda un brillo saludable.',
+                image: 'https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?auto=format&fit=crop&w=500&q=80',
+                emoji: '🧼🍠'
+            },
+            {
+                id: 'jab-arroz',
+                name: 'Jabón de Arroz Aclarante',
+                category: 'jabones',
+                price: 250,
+                description: 'Suaviza la piel, unifica el tono y reduce manchas faciales.',
+                image: 'https://images.unsplash.com/photo-1590439471364-192aa70c0b53?auto=format&fit=crop&w=500&q=80',
+                emoji: '🧼🍚'
+            },
+            {
+                id: 'jab-cafe',
+                name: 'Jabón de Café Exfoliante',
+                category: 'jabones',
+                price: 250,
+                description: 'Anticelulítico, mejora la circulación y activa tu piel.',
+                image: 'https://images.unsplash.com/photo-1547887537-6158d64c35b3?auto=format&fit=crop&w=500&q=80',
+                emoji: '🧼☕'
+            },
+
+            // EXFOLIANTES CORPORALES
+            {
+                id: 'exf-coco',
+                name: 'Exfoliante de Coco',
+                category: 'exfoliantes',
+                price: 300,
+                description: 'Hidratación ultra cremosa y aroma tropical revitalizante.',
+                image: 'https://images.unsplash.com/photo-1531349133861-a534509e32f9?auto=format&fit=crop&w=500&q=80',
+                emoji: '🥥✨'
+            },
+            {
+                id: 'exf-curcuma',
+                name: 'Exfoliante de Cúrcuma',
+                category: 'exfoliantes',
+                price: 300,
+                description: 'Piel más radiante, ayuda a desvanecer estrías y manchas.',
+                image: 'https://images.unsplash.com/photo-1601049676099-e7ed07d825b0?auto=format&fit=crop&w=500&q=80',
+                emoji: '🍠✨'
+            },
+            {
+                id: 'exf-fresa',
+                name: 'Exfoliante de Fresa',
+                category: 'exfoliantes',
+                price: 300,
+                description: 'Antioxidante de aroma dulce y refrescante que ilumina tu piel.',
+                image: 'https://images.unsplash.com/photo-1556229174-5e42a09e45af?auto=format&fit=crop&w=500&q=80',
+                emoji: '🍓✨'
+            },
+            {
+                id: 'exf-limon',
+                name: 'Exfoliante de Limón',
+                category: 'exfoliantes',
+                price: 300,
+                description: 'Efecto purificante, astringente natural y energizante.',
+                image: 'https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?auto=format&fit=crop&w=500&q=80',
+                emoji: '🍋✨'
+            },
+            {
+                id: 'exf-blueberry',
+                name: 'Exfoliante de Blueberry',
+                category: 'exfoliantes',
+                price: 300,
+                description: 'Combate el envejecimiento prematuro y revitaliza tejidos.',
+                image: 'https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=500&q=80',
+                emoji: '🫐✨'
+            },
+
+            // CUIDADO NATURAL
+            {
+                id: 'cuidado-crema-aclarante',
+                name: 'Crema Aclarante Premium',
+                category: 'cuidado',
+                price: 350,
+                description: 'Devuelve el tono natural de la piel libre de imperfecciones.',
+                image: 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=500&q=80',
+                emoji: '🧴✨'
+            },
+            {
+                id: 'cuidado-aceite-rosa-mosqueta',
+                name: 'Aceite Puro de Rosa Mosqueta',
+                category: 'cuidado',
+                price: 500,
+                description: 'Elixir regenerador definitivo para líneas finas y cicatrices.',
+                image: 'https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=500&q=80',
+                emoji: '🌹💧'
+            }
+        ];
+
+        // Global Application State
+        let currentFilter = 'todos';
+        let searchQuery = '';
+        let cart = [];
+
+        // App Initialization
+        window.addEventListener('DOMContentLoaded', () => {
+            renderProducts();
+            lucide.createIcons();
+            
+            // Adjust header shadow on scroll
+            window.addEventListener('scroll', () => {
+                const header = document.querySelector('header');
+                if (window.scrollY > 10) {
+                    header.classList.add('shadow-md');
+                } else {
+                    header.classList.remove('shadow-md');
+                }
+            });
+        });
+
+        // Main rendering logic
+        function renderProducts() {
+            const container = document.getElementById('products-container');
+            container.innerHTML = '';
+
+            const filtered = rawProducts.filter(p => {
+                const matchesCategory = currentFilter === 'todos' || p.category === currentFilter;
+                const matchesSearch = p.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
+                                      p.description.toLowerCase().includes(searchQuery.toLowerCase());
+                return matchesCategory && matchesSearch;
+            });
+
+            if (filtered.length === 0) {
+                container.innerHTML = `
+                    <div class="col-span-full text-center py-16 space-y-3">
+                        <div class="text-brand-roseDark"><i data-lucide="search-x" class="w-12 h-12 mx-auto"></i></div>
+                        <h4 class="font-serif text-lg font-medium">No encontramos productos que coincidan</h4>
+                        <p class="text-sm text-brand-charcoal/60 font-light">Prueba buscando otro ingrediente o cambia de categoría.</p>
+                    </div>
+                `;
+                lucide.createIcons();
+                return;
+            }
+
+            filtered.forEach((product, index) => {
+                const productCard = document.createElement('div');
+                productCard.className = "bg-white rounded-[2rem] overflow-hidden border border-brand-rose/10 shadow-sm hover:shadow-xl transition-all duration-300 group flex flex-col justify-between";
+                
+                // Get item count from cart
+                const cartItem = cart.find(item => item.id === product.id);
+                const quantityInCart = cartItem ? cartItem.quantity : 0;
+                
+                productCard.innerHTML = `
+                    <div class="relative overflow-hidden aspect-[4/3] bg-brand-light">
+                        <img 
+                            src="${product.image}" 
+                            alt="${product.name}" 
+                            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        >
+                        <!-- Category Tag -->
+                        <span class="absolute top-4 left-4 bg-white/95 backdrop-blur-sm text-brand-roseDark text-[10px] tracking-widest uppercase px-3 py-1.5 rounded-full font-semibold shadow-sm">
+                            ${product.category === 'jabones' ? 'Jabón Artesanal' : product.category === 'exfoliantes' ? 'Exfoliante' : 'Cuidado Premium'}
+                        </span>
+                        
+                        <!-- Quick Quantity Indicator Badge -->
+                        ${quantityInCart > 0 ? `
+                            <span class="absolute top-4 right-4 bg-brand-rose text-white text-xs w-6 h-6 rounded-full flex items-center justify-center font-bold animate-pulse-subtle">
+                                ${quantityInCart}
+                            </span>
+                        ` : ''}
+                    </div>
+                    
+                    <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+                        <div class="space-y-2">
+                            <div class="flex items-start justify-between">
+                                <h4 class="font-serif text-lg text-brand-charcoal font-semibold tracking-wide">${product.name}</h4>
+                            </div>
+                            <p class="text-xs text-brand-charcoal/60 leading-relaxed font-light line-clamp-2">${product.description}</p>
+                        </div>
+
+                        <div class="flex items-center justify-between pt-2">
+                            <div>
+                                <span class="text-xs text-brand-charcoal/50 block">Precio</span>
+                                <span class="font-serif text-xl font-bold text-brand-roseDark">RD$ ${product.price}</span>
+                            </div>
+                            
+                            <button 
+                                onclick="addToCart('${product.id}')" 
+                                class="bg-brand-light hover:bg-brand-rose group-hover:bg-brand-rose hover:text-white text-brand-roseDark p-3.5 rounded-2xl transition-all duration-300 flex items-center gap-2 relative z-10"
+                                aria-label="Agregar al carrito"
+                            >
+                                <i data-lucide="plus" class="w-5 h-5"></i>
+                                <span class="text-xs font-semibold uppercase tracking-wider hidden sm:inline">Agregar</span>
+                            </button>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(productCard);
+            });
+
+            lucide.createIcons();
+        }
+
+        // Search Input Callback
+        function searchProducts() {
+            searchQuery = document.getElementById('product-search').value;
+            renderProducts();
+        }
+
+        // Category Selection Filter
+        function filterProducts(category) {
+            currentFilter = category;
+            
+            // Adjust buttons active style
+            const buttons = document.querySelectorAll('.cat-btn');
+            buttons.forEach(btn => {
+                if (btn.getAttribute('data-category') === category) {
+                    btn.className = "cat-btn px-6 py-2.5 rounded-full text-xs sm:text-sm font-medium tracking-wide transition-all duration-300 bg-brand-rose text-white shadow-sm";
+                } else {
+                    btn.className = "cat-btn px-6 py-2.5 rounded-full text-xs sm:text-sm font-medium tracking-wide transition-all duration-300 bg-white hover:bg-brand-rose/10 text-brand-charcoal border border-brand-rose/20";
+                }
+            });
+
+            renderProducts();
+        }
+
+        // Cart Drawer Interaction
+        function toggleCart(action = 'toggle') {
+            const drawer = document.getElementById('cart-drawer');
+            const drawerContent = document.getElementById('cart-drawer-content');
+            
+            const isClosed = drawer.classList.contains('pointer-events-none');
+            
+            if (action === 'open' || (action === 'toggle' && isClosed)) {
+                // Open
+                drawer.classList.remove('pointer-events-none', 'opacity-0');
+                drawerContent.classList.remove('translate-x-full');
+                drawerContent.classList.add('pointer-events-auto');
+            } else if (action === 'close' || (action === 'toggle' && !isClosed)) {
+                // Close
+                drawer.classList.add('pointer-events-none', 'opacity-0');
+                drawerContent.classList.add('translate-x-full');
+                drawerContent.classList.remove('pointer-events-auto');
+            }
+        }
+
+        // Add to Cart with animations
+        function addToCart(productId) {
+            const product = rawProducts.find(p => p.id === productId);
+            const cartItem = cart.find(item => item.id === productId);
+
+            if (cartItem) {
+                cartItem.quantity += 1;
+            } else {
+                cart.push({ ...product, quantity: 1 });
+            }
+
+            // Show delicate popup alert
+            showToast("Añadido con éxito", `${product.name} listo para tu rutina.`);
+            
+            updateCartUI();
+            renderProducts(); // Refresh catalog counts
+            
+            // Abre el carrito automáticamente para que el usuario pueda proceder con la compra
+            toggleCart('open');
+        }
+
+        // Change Cart Item quantities
+        function adjustQuantity(productId, amount) {
+            const cartItem = cart.find(item => item.id === productId);
+            if (!cartItem) return;
+
+            cartItem.quantity += amount;
+            if (cartItem.quantity <= 0) {
+                cart = cart.filter(item => item.id !== productId);
+            }
+
+            updateCartUI();
+            renderProducts();
+        }
+
+        // Remove item entirely from cart
+        function removeCartItem(productId) {
+            cart = cart.filter(item => item.id !== productId);
+            updateCartUI();
+            renderProducts();
+        }
+
+        // Refresh Cart Interface Elements
+        function updateCartUI() {
+            const badge = document.getElementById('cart-badge');
+            const cartItemsContainer = document.getElementById('cart-items');
+            const emptyMsg = document.getElementById('empty-cart-message');
+            const subtotalText = document.getElementById('cart-subtotal');
+            const totalText = document.getElementById('cart-total');
+
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            
+            // Badge Badge Animation Scale
+            if (totalItems > 0) {
+                badge.innerText = totalItems;
+                badge.classList.remove('scale-0');
+                badge.classList.add('scale-100');
+            } else {
+                badge.classList.remove('scale-100');
+                badge.classList.add('scale-0');
+            }
+
+            // Items listing
+            if (cart.length === 0) {
+                emptyMsg.style.display = 'block';
+                // Clear out only children that aren't emptyMsg
+                const listItems = cartItemsContainer.querySelectorAll('.cart-product-row');
+                listItems.forEach(item => item.remove());
+                
+                subtotalText.innerText = "RD$ 0.00";
+                totalText.innerText = "RD$ 0.00";
+                return;
+            }
+
+            emptyMsg.style.display = 'none';
+            // Clear existing elements before render
+            const existingRows = cartItemsContainer.querySelectorAll('.cart-product-row');
+            existingRows.forEach(row => row.remove());
+
+            let calculatedTotal = 0;
+
+            cart.forEach(item => {
+                const rowTotal = item.price * item.quantity;
+                calculatedTotal += rowTotal;
+
+                const rowHtml = document.createElement('div');
+                rowHtml.className = "cart-product-row bg-white/70 p-4 rounded-2xl border border-brand-rose/10 flex gap-4 relative group";
+                rowHtml.innerHTML = `
+                    <div class="w-16 h-16 rounded-xl overflow-hidden bg-brand-light flex-shrink-0">
+                        <img src="${item.image}" alt="${item.name}" class="w-full h-full object-cover">
+                    </div>
+                    <div class="flex-1 flex flex-col justify-between">
+                        <div>
+                            <div class="flex justify-between items-start">
+                                <h5 class="text-xs font-semibold text-brand-charcoal pr-4">${item.name}</h5>
+                                <button onclick="removeCartItem('${item.id}')" class="text-brand-charcoal/40 hover:text-red-500 transition-colors">
+                                    <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+                                </button>
+                            </div>
+                            <span class="text-[10px] text-brand-charcoal/60">${item.emoji} Unidad: RD$ ${item.price}</span>
+                        </div>
+                        <div class="flex justify-between items-end pt-2">
+                            <div class="flex items-center gap-2 bg-brand-light rounded-full p-1 border border-brand-rose/10">
+                                <button onclick="adjustQuantity('${item.id}', -1)" class="w-6 h-6 rounded-full bg-white hover:bg-brand-rose/20 text-brand-charcoal text-xs font-bold transition-colors">-</button>
+                                <span class="text-xs font-bold w-4 text-center text-brand-charcoal">${item.quantity}</span>
+                                <button onclick="adjustQuantity('${item.id}', 1)" class="w-6 h-6 rounded-full bg-white hover:bg-brand-rose/20 text-brand-charcoal text-xs font-bold transition-colors">+</button>
+                            </div>
+                            <span class="text-xs font-bold text-brand-roseDark">RD$ ${rowTotal}</span>
+                        </div>
+                    </div>
+                `;
+                cartItemsContainer.appendChild(rowHtml);
+            });
+
+            subtotalText.innerText = `RD$ ${calculatedTotal.toLocaleString()}`;
+            totalText.innerText = `RD$ ${calculatedTotal.toLocaleString()}`;
+            
+            lucide.createIcons();
+        }
+
+        // WhatsApp Checkout logic
+        function checkoutOrder() {
+            if (cart.length === 0) {
+                showToast("Bolsa vacía", "Por favor agrega productos antes de continuar.", true);
+                return;
+            }
+
+            // Build beautiful text block for WhatsApp
+            let text = `🌸 *¡Hola Britney Organic!* 🌸\n`;
+            text += `Me gustaría realizar una orden desde la página web de los siguientes consentidos:\n\n`;
+
+            let grandTotal = 0;
+            cart.forEach(item => {
+                const sub = item.price * item.quantity;
+                grandTotal += sub;
+                text += `• *${item.quantity}x ${item.name}* (${item.emoji})\n`;
+                text += `   _Subtotal: RD$ ${sub}_\n\n`;
+            });
+
+            text += `---------------------------------\n`;
+            text += `✨ *Total Estimado:* RD$ ${grandTotal}\n\n`;
+            text += `Por favor, confírmenme disponibilidad para acordar el pago y la entrega/envío en República Dominicana. 💕`;
+
+            const encoded = encodeURIComponent(text);
+            const phoneNumber = "18293256597"; // Britney Organic Dominican Republic Official
+            
+            // Redirect smoothly
+            window.open(`https://wa.me/${phoneNumber}?text=${encoded}`, '_blank');
+        }
+
+        // WhatsApp Custom Form logic for questions
+        function sendFormWhatsApp(event) {
+            event.preventDefault();
+            const name = document.getElementById('form-name').value;
+            const message = document.getElementById('form-message').value;
+
+            let text = `🌸 *¡Hola Britney Organic!* 🌸\n`;
+            text += `Tengo una pregunta/consulta sobre mis productos:\n\n`;
+            text += `*Nombre:* ${name}\n`;
+            text += `*Mensaje:* ${message}\n\n`;
+            text += `¡Espero su respuesta de asesoría! ✨`;
+
+            const encoded = encodeURIComponent(text);
+            const phoneNumber = "18293256597";
+            window.open(`https://wa.me/${phoneNumber}?text=${encoded}`, '_blank');
+        }
+
+        // Elegant custom toast alerts
+        function showToast(title, message, isWarning = false) {
+            const toast = document.getElementById('toast');
+            const tTitle = document.getElementById('toast-title');
+            const tMsg = document.getElementById('toast-message');
+
+            tTitle.innerText = title;
+            tMsg.innerText = message;
+
+            if (isWarning) {
+                tTitle.classList.remove('text-brand-rose');
+                tTitle.classList.add('text-yellow-500');
+            } else {
+                tTitle.classList.remove('text-yellow-500');
+                tTitle.classList.add('text-brand-rose');
+            }
+
+            // Animate In
+            toast.classList.remove('translate-y-24', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            // Automatically hide after 3 seconds
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-24', 'opacity-0');
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
